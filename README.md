@@ -1,4 +1,4 @@
 WhoisDomainPHP
 ==============
 
-Whois lookup with php
+Very simple example to make a whois lookup with PHP.
