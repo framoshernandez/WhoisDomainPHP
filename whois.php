@@ -181,8 +181,8 @@ class WhoisDomain{
 	);
 
 	function WhoisDomain($domain,$toplevel){
-		if(!isset(self::$arrayServers[$toplevel])) return "Error: the top-level domain does not exist";
-		if(!preg_match("/^[-0-9a-z]{2,}$/i",$domain)) return "Error: the domain is incorrect";
+		if(!isset(self::$arrayServers[$toplevel])) die("Error: the top-level domain does not exist");
+		if(!preg_match("/^[-0-9a-z]{2,}$/i",$domain)) die("Error: the domain is incorrect");
 		$this->domain = $domain;
 		$this->toplevel = $toplevel;
 		
@@ -195,7 +195,6 @@ class WhoisDomain{
 		if($this->toplevel=="com" || $this->toplevel=="net"){
 			$fulldomain = "=" . $fulldomain;
 		}
-		echo $fulldomain;
 		$fp = @fsockopen(self::$arrayServers[$this->toplevel], 43, $errno, $errstr, 20) or die("Connection Error with ".self::$arrayServers[$this->toplevel]);
 		fputs($fp, $fulldomain . "\r\n");
 		$out = "";
